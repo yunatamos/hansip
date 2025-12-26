@@ -64,13 +64,11 @@ For Linux desktop environments with `.desktop` file support:
 1. **Install desktop files:**
    ```bash
    # Update paths in desktop files to match your installation directory
-   sed -i "s|/home/yunat/Apps/Hansip|$(pwd)|g" desktop/hansip.desktop
-   sed -i "s|/home/yunat/Apps/Hansip|$(pwd)|g" desktop/hansip-stop.desktop
-   
-   # Copy to user applications directory
-   mkdir -p ~/.local/share/applications
-   cp desktop/hansip.desktop ~/.local/share/applications/
-   cp desktop/hansip-stop.desktop ~/.local/share/applications/
+   # Assuming Hansip is installed in $HOME/Apps/Hansip
+   # If using a different location, update the sed command accordingly
+   INSTALL_DIR="$HOME/Apps/Hansip"
+   sed "s|\$HOME/Apps/Hansip|$INSTALL_DIR|g" desktop/hansip.desktop > ~/.local/share/applications/hansip.desktop
+   sed "s|\$HOME/Apps/Hansip|$INSTALL_DIR|g" desktop/hansip-stop.desktop > ~/.local/share/applications/hansip-stop.desktop
    
    # Update desktop database
    update-desktop-database ~/.local/share/applications

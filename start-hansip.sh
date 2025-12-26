@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Hansip Startup Script
-HANSIP_DIR="/home/yunat/Apps/Hansip"
+# Get the directory where this script is located
+HANSIP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PID_FILE_SERVER="$HANSIP_DIR/.hansip-server.pid"
 PID_FILE_WEB="$HANSIP_DIR/.hansip-web-server.pid"
 
