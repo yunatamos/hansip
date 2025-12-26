@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Hansip
+Comment=Start Hansip File Sharing Server
+Exec=bash -c '/home/yunat/Apps/Hansip/start-hansip.sh start; echo ""; echo "Press Enter to close..."; read'
+Icon=folder-publicshare
+Terminal=true
+Categories=Network;FileTransfer;
+Keywords=hansip;file;share;sharing;server;
+StartupNotify=false

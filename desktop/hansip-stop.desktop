@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Hansip Stop
+Comment=Stop Hansip File Sharing Server
+Exec=bash -c '/home/yunat/Apps/Hansip/start-hansip.sh stop; echo ""; echo "Press Enter to close..."; read'
+Icon=process-stop
+Terminal=true
+Categories=Network;FileTransfer;
+Keywords=hansip;file;share;sharing;server;stop;close;
+StartupNotify=false
