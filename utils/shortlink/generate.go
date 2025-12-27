@@ -58,7 +58,7 @@ func MakeNewCode(fileGroupId uint64, pin string, db *gorm.DB) (*models.ShortLink
 	return &newShortLink, nil
 }
 
-func MakeURL(shortLink *models.ShortLink) string {
+func MakeURL(shortLink *models.ShortLink, requestHost string) string {
 	shortlinkPath := viper.GetString("site.shortlink_path")
 
 	siteProtocol := "http://"
@@ -66,9 +66,22 @@ func MakeURL(shortLink *models.ShortLink) string {
 		siteProtocol = "https://"
 	}
 
-	siteAddr := siteProtocol + viper.GetString("server_web.host")
+	host := viper.GetString("server_web.host")
 	sitePort := viper.GetString("server_web.port")
 
+	// If host is 0.0.0.0 (bind to all interfaces), use the request host instead
+	if host == "0.0.0.0" && requestHost != "" {
+		// Extract hostname from the request (remove port if present)
+		host = requestHost
+		for i := len(host) - 1; i >= 0; i-- {
+			if host[i] == ':' {
+				host = host[:i]
+				break
+			}
+		}
+	}
+
+	siteAddr := siteProtocol + host
 	if sitePort != "80" {
 		siteAddr = fmt.Sprintf("%s:%s", siteAddr, sitePort)
 	}

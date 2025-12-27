@@ -265,7 +265,7 @@ func BundleFileGroup(repo repository.Repository, s3Client *s3.Client) func(c *gi
 			"success": true,
 			"data": gin.H{
 				"expiredAt":   fileGroup.ExpiredAt,
-				"downloadUrl": shortlink.MakeURL(shortLink),
+				"downloadUrl": shortlink.MakeURL(shortLink, c.Request.Host),
 			},
 		})
 	}
